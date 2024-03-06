@@ -1,0 +1,68 @@
+floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              TextEditingController nameController = TextEditingController();
+              TextEditingController imageUrlController = TextEditingController();
+              TextEditingController brandingController = TextEditingController();
+              TextEditingController detailsController = TextEditingController();
+              TextEditingController priceController = TextEditingController();
+
+              return AlertDialog(
+                title: Text("Add Product"),
+                content: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      TextField(
+                        controller: nameController,
+                        decoration: InputDecoration(labelText: "Name"),
+                      ),
+                      TextField(
+                        controller: imageUrlController,
+                        decoration: InputDecoration(labelText: "Image URL"),
+                      ),
+                      TextField(
+                        controller: brandingController,
+                        decoration: InputDecoration(labelText: "branding"),
+                      ),
+                      TextField(
+                        controller: detailsController,
+                        decoration: InputDecoration(labelText: "Details"),
+                      ),
+                      TextField(
+                        controller: priceController,
+                        decoration: InputDecoration(labelText: "Price"),
+                      ),
+                    ],
+                  ),
+                ),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text("Cancel"),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      addNewProduct(
+                        nameController.text,
+                        imageUrlController.text,
+                        detailsController.text,
+                        priceController.text,
+                        brandingController.text,
+                      );
+                      Navigator.of(context).pop();
+                    },
+                    child: Text("Add"),
+                  ),
+                ],
+              );
+            },
+          );
+        },
+        child: Icon(Icons.add),
+      ),
+    );
+  }
